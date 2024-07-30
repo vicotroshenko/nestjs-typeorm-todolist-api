@@ -10,13 +10,17 @@ export class UsersService {
   ) {}
 
   public async saveUser(payload: DeepPartial<User>) {
-    console.log('save user');
     return this.userRepository.save(payload);
   }
 
   public async getUserByEmail(email: string) {
+    console.log(email);
     return this.userRepository.findOne({
       where: { email },
     });
   }
+
+  public async updateUser(email: string, data: DeepPartial<User>) {
+    return this.userRepository.update(email, data);
+  };
 }
